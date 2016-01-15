@@ -23,15 +23,17 @@
       </tr>
       <tbody>
         <tr ng-repeat="book in books.items">
-          <td>  {{book.title}} </td>
+          <form>
+		  <td>  {{book.title}} </td>
           <td > {{book.description}}  </td>
           <td> 
 			<ul>
 				<li ng-repeat="author in book.authors">{{author}}</li>
 			</ul>	
 		  </td>
-		  <td><button type="submit" class="btn btn-success btn-lg btn-block" ng-click="delete()" ng-value="{{book.id}}"> Delete </button></td>
-		  <td><button type="submit" class="btn btn-success btn-lg btn-block" ng-click="modify()" ng-value="{{book.id}}"> Update </button></td>
+		  <td><button type="submit" class="form-control" ng-click="delete(book.id)" ng-value="{{book.id}}"> Delete </button></td>
+		  <td><button type="submit" class="form-control" ng-click="modify()" ng-value="{{book.id}}"> Update </button></td>
+          </form>
         </tr>
       </tbody>
   </table>
