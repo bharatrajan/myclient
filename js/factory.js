@@ -1,12 +1,16 @@
 console.log(typeof angular);
 
+bookStore = bookStore || {};
+
 var mainApp = angular.module('CCapp', []);
+
+console.log("zURL : "+bookStore.utils.pageURL());
 
 //Service for Get Book List
 mainApp.factory('getBookListService', function($http) {
    return ({
         getBooks: function() {
-			 var getBooksListAjax = $http.get('http://127.0.0.1:8081/api/books');
+			 var getBooksListAjax = $http.get('http://'+ bookStore.utils.pageURL() +'/api/books');
              var getBooksListResult = getBooksListAjax.then(function(result) {
                             //resolve the promise as the data
 							//result = JSON.parse(result);
@@ -26,7 +30,7 @@ mainApp.factory('getBookListService', function($http) {
 mainApp.factory('addBookServ', function($http) {
    return ({
         add: function(bookData) {
-			 var addBookAjax = $http.post('http://127.0.0.1:8081/api/books',bookData)
+			 var addBookAjax = $http.post('http://'+ bookStore.utils.pageURL() +'/api/books',bookData)
 							.then(function(result) {
 								//resolve the promise as the data
 								//result = JSON.parse(result);
@@ -45,7 +49,7 @@ mainApp.factory('addBookServ', function($http) {
 mainApp.factory('delBookServ', function($http) {
    return ({
         delete: function(bookID) {
-			 var addBookAjax = $http.delete('http://127.0.0.1:8081/api/books/'+bookID)
+			 var addBookAjax = $http.delete('http://'+ bookStore.utils.pageURL() +'/api/books/'+bookID)
 							.then(function(result) {
 								//resolve the promise as the data
 								//result = JSON.parse(result);
